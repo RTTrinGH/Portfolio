@@ -1,0 +1,142 @@
+<html>
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+
+        <script src="https://kit.fontawesome.com/eaa91eeebb.js" crossorigin="anonymous"></script>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+        <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+
+        <link rel="stylesheet" href="mystyle.css">
+        <title>Raghav's Portfolio Website</title>
+    </head>
+    <body>
+        <div id="indexbody">
+
+        <canvas id="c"></canvas>
+
+        <h1 id="firstWordsh1">Raghavendra Thakur</h1>
+        <h4 id="subtitleForName" class="silkscreen-regular">Student Developer</h4>
+
+        <br><br><br>
+
+        <div class="buttonDiv">
+        <button id="projectsButton">View My Projects</button>
+        <br>
+        <a href="about.html">
+        <button id="aboutButton">About Me</button>
+        </a>
+        </div>
+
+        <div id="projectMenu">
+            <button id="closeMenu">&times;</button>
+
+            <!-- IMPORTANT: CHANGE THE UL TO OL AFTER COMPLETED!!!! -->
+            <!-- IMPORTANT: CHANGE THE UL TO OL AFTER COMPLETED!!!! -->
+            <!-- IMPORTANT: CHANGE THE UL TO OL AFTER COMPLETED!!!! -->
+
+            <!-- <ul> -->
+                
+                <a href="#">
+                <div class="project-item">
+                    <!-- <li> -->
+                        <h1>This website is still under development. <br>Come back soon to see my projects!</h1>
+                    <!-- </li> -->
+                </div>
+                </a>
+                
+                <!-- <a href="house.html">
+                <div class="project-item">
+                    <li>House Project</li>
+                </div>
+                </a> -->
+
+                <!-- <a href="forLoopsLab.html">
+                <div class="project-item">
+                    <li>For Loops Lab</li>
+                </div>
+                </a>
+
+                <a href="keepingItReal.html">
+                <div class="project-item">
+                    <li>Keeping It Real</li>
+                </div>
+                </a>
+
+                <a href="animationLab.html">
+                <div class="project-item">
+                    <li>Animation Lab</li>
+                </div>
+                </a>
+
+                <a href="fishTales.html">
+                <div class="project-item">
+                    <li>Fish Tales</li>
+                </div>
+                </a> -->
+            <!-- </ul> -->
+        </div>
+        
+        <!--<img id="matrixBackground" src="matrix-matrix-code.gif" alt="Matrix Background">-->
+
+        <script>
+            document.getElementById("projectsButton").addEventListener("click", function() {
+                let menu = document.getElementById("projectMenu");
+                menu.style.display = "flex";
+            });
+        
+            document.getElementById("closeMenu").addEventListener("click", function() {
+                document.getElementById("projectMenu").style.display = "none";
+            });
+        </script>
+
+
+
+
+        <script>
+            var c = document.getElementById("c");
+            var ctx = c.getContext("2d");
+
+            function resizeCanvas() {
+                c.width = window.innerWidth;
+                c.height = window.innerHeight;
+            }
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            var matrix = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}".split("");
+            var font_size = 30; /* Adjusted for better visibility */
+            var columns = Math.floor(c.width / font_size);
+            var drops = new Array(columns).fill(1);
+
+            function draw() {
+                ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
+                ctx.fillRect(0, 0, c.width, c.height);
+
+                ctx.fillStyle = "rgba(0, 255, 0, 0.6)"; /* Classic green */
+                ctx.font = font_size + "px monospace";
+
+                for (var i = 0; i < drops.length; i++) {
+                    var text = matrix[Math.floor(Math.random() * matrix.length)];
+                    ctx.fillText(text, i * font_size, drops[i] * font_size);
+
+                    if (drops[i] * font_size > c.height && Math.random() > 0.975) drops[i] = 0;
+
+                    drops[i]++;
+                }
+            }
+
+            setInterval(draw, 35);
+        </script>
+        </div>
+    </body>
+</html>
