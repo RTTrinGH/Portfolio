@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+
+        <script src="https://kit.fontawesome.com/eaa91eeebb.js" crossorigin="anonymous"></script>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+        <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+
+        <link rel="stylesheet" href="mystyle.css">
+        <title>Augie</title>
+
+        <style>
+        .themed-btn {
+            background: #101c10;
+            color: #39ff14;
+            font-family: 'JetBrains Mono', 'Share Tech Mono', 'Silkscreen', monospace, serif;
+            font-size: 1.12rem;
+            font-weight: 400;
+            padding: 0.95rem 2.2rem;
+            border: 2px solid #39ff14;
+            border-radius: 0;
+            box-shadow: none;
+            letter-spacing: 1.1px;
+            transition: background 0.18s, border-color 0.18s, color 0.18s, box-shadow 0.18s, transform 0.08s;
+            cursor: pointer;
+            outline: none;
+            text-transform: uppercase;
+            margin: 0.2rem 0;
+            position: relative;
+        }
+        .themed-btn:hover, .themed-btn:focus {
+            background: #181f18;
+            color: #00ff88;
+            border-color: #00ff88;
+            box-shadow: 0 0 12px 2px #39ff14, 0 0 2px #00ff88;
+            text-shadow: 0 0 8px #00ff88;
+        }
+        .themed-btn:active {
+            background: #181f18;
+            color: #00ff88;
+            border-color: #00ff88;
+        }
+        body {
+            background: #101c10;
+            color: #39ff14;
+            font-family: 'JetBrains Mono', 'Share Tech Mono', 'Silkscreen', monospace, serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+        .main-project-container {
+            max-width: 900px;
+            margin: 2.5rem auto 2.5rem auto;
+            padding: 2.5rem 1.5rem 2.5rem 1.5rem;
+            background: rgba(0,0,0,0.92);
+            border-radius: 18px;
+            box-shadow: 0 0 32px 6px #000a;
+        }
+        .project-carousel {
+            position: relative;
+            width: 100%;
+            max-width: 820px;
+            height: 400px;
+            margin: 2.5rem auto 2rem auto;
+            overflow: hidden;
+            border-radius: 16px;
+            background: #181f18;
+            box-shadow: 0 0 24px 2px #39ff1420;
+            display: flex;
+            align-items: center;
+        }
+        .project-carousel-images {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            min-height: 0;
+            background: linear-gradient(90deg, #181f18 60%, #232d23 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .project-carousel-image {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: 400px;
+            object-fit: contain;
+            background: #181f18;
+            opacity: 0;
+            transition: opacity 0.5s cubic-bezier(.77,0,.18,1);
+            border-radius: 16px;
+            z-index: 1;
+            pointer-events: none;
+        }
+        .project-carousel-image.active {
+            opacity: 1;
+            z-index: 2;
+            pointer-events: auto;
+        }
+        .project-carousel-controls {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transform: translateY(-50%);
+            z-index: 10;
+            pointer-events: none;
+        }
+        .project-carousel-btn {
+            background: rgba(57,255,20,0.08);
+            color: #39ff14;
+            border: none;
+            font-size: 2.5rem;
+            padding: 0.05em 0.35em;
+            font-family: 'Silkscreen', sans-serif;
+            border-radius: 50%;
+            transition: background 0.18s, color 0.18s, box-shadow 0.18s, transform 0.18s, opacity 0.18s;
+            pointer-events: auto;
+            cursor: pointer;
+            box-shadow: none;
+            opacity: 0.32;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            outline: none;
+            backdrop-filter: blur(2px);
+        }
+        .project-carousel-btn:focus {
+            outline: 1.5px solid #39ff14;
+            outline-offset: 2px;
+            opacity: 0.6;
+        }
+        .project-carousel-btn:hover {
+            background: rgba(57,255,20,0.18);
+            color: #baffc9;
+            opacity: 0.7;
+            box-shadow: 0 0 8px #39ff1440;
+            transform: scale(1.08);
+        }
+        .project-carousel-btn:active {
+            background: rgba(57,255,20,0.28);
+            color: #39ff14;
+            opacity: 1;
+            transform: scale(0.96);
+        }
+        /* No decorative shapes */
+        @media (max-width: 900px) {
+            .project-carousel, .project-carousel-image {
+                height: 200px;
+            }
+        }
+        @media (max-width: 600px) {
+            .project-carousel, .project-carousel-image {
+                height: 110px;
+            }
+        }
+        </style>
+
+    </head>
+    <body>
+    <!-- No animated or decorative background -->
+    <div class="main-project-container">
+      <div class="project-header-card">
+        <h1 class="project-title">Augie</h1>
+        <p class="project-summary">Augie is a virtual credit card that helps build credit by paying bills, with no interest or hidden fees.</p>
+      </div>
+      <div class="project-carousel">
+        <div class="project-carousel-controls">
+          <button class="project-carousel-btn" id="augiePrevBtn" aria-label="Previous image">
+            <span style="display:inline-block; font-size:2.2rem; line-height:1; filter: drop-shadow(0 0 6px #39ff14);">&#10094;</span>
+          </button>
+          <button class="project-carousel-btn" id="augieNextBtn" aria-label="Next image">
+            <span style="display:inline-block; font-size:2.2rem; line-height:1; filter: drop-shadow(0 0 6px #39ff14);">&#10095;</span>
+          </button>
+        </div>
+        <div class="project-carousel-images" id="augieCarouselImages">
+          <img src="/assets/augie1.png" alt="Project Image 1" class="project-carousel-image active">
+          <img src="/assets/augie2.png" alt="Project Image 2" class="project-carousel-image">
+          <img src="/assets/augie3.png" alt="Project Image 3" class="project-carousel-image">
+          <img src="/assets/augie4.png" alt="Project Image 4" class="project-carousel-image">
+        </div>
+      </div>
+      <div class="project-section-card">
+        <h2 class="project-section-title">Project Overview</h2>
+        <p class="project-section-text">Augie is a virtual credit card that helps users build their credit by paying recurring bills. It reports to major credit bureaus, offers zero-interest payments, flexible options, and rewards points to reduce future bills—all without hidden fees. It’s a great tool for improving credit health.</p>
+      </div>
+      <div class="project-section-card">
+        <h2 class="project-section-title">Languages Used</h2>
+        <div class="project-languages-container" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:2.2rem 2.2rem;justify-items:center;align-items:center;width:100%;max-width:500px;margin:0 auto 1.5rem auto;background:rgba(20,30,20,0.7);padding:2.2rem 1.2rem 1.2rem 1.2rem;border-radius:14px;border:1.5px solid #00ff88;box-shadow:0 0 12px #00ff8820;">
+          <div class="skill" style="display:flex;flex-direction:column;align-items:center;">
+            <img src="/assets/react.png" alt="React" style="width:72px;height:72px;object-fit:contain;margin-bottom:0.7rem;filter:drop-shadow(0 0 8px #39ff14);border:none;">
+            <p style="color:#39ff14;font-family:'JetBrains Mono','Share Tech Mono','Silkscreen',monospace,serif;font-size:1.08rem;margin:0;text-align:center;border:none;">React</p>
+          </div>
+          <div class="skill" style="display:flex;flex-direction:column;align-items:center;">
+            <img src="/assets/nodejs.png" alt="Node.js" style="width:72px;height:72px;object-fit:contain;margin-bottom:0.7rem;filter:drop-shadow(0 0 8px #39ff14);">
+            <p style="color:#39ff14;font-family:'JetBrains Mono','Share Tech Mono','Silkscreen',monospace,serif;font-size:1.08rem;margin:0;">Node.js</p>
+          </div>
+          <div class="skill" style="display:flex;flex-direction:column;align-items:center;">
+            <img src="/assets/html.png" alt="HTML" style="width:54px;height:54px;object-fit:contain;margin-bottom:0.7rem;filter:drop-shadow(0 0 8px #39ff14);">
+            <p style="color:#39ff14;font-family:'JetBrains Mono','Share Tech Mono','Silkscreen',monospace,serif;font-size:1.08rem;margin:0;">HTML</p>
+          </div>
+          <div class="skill" style="display:flex;flex-direction:column;align-items:center;">
+            <img src="/assets/css.png" alt="CSS" style="width:54px;height:54px;object-fit:contain;margin-bottom:0.7rem;filter:drop-shadow(0 0 8px #39ff14);margin-left:auto;margin-right:auto;">
+            <p style="color:#39ff14;font-family:'JetBrains Mono','Share Tech Mono','Silkscreen',monospace,serif;font-size:1.08rem;margin:0;text-align:center;">CSS</p>
+          </div>
+          <div class="skill" style="display:flex;flex-direction:column;align-items:center;">
+            <img src="/assets/typescript.png" alt="TypeScript" style="width:54px;height:54px;object-fit:contain;margin-bottom:0.7rem;filter:drop-shadow(0 0 8px #39ff14);margin-left:auto;margin-right:auto;">
+            <p style="color:#39ff14;font-family:'JetBrains Mono','Share Tech Mono','Silkscreen',monospace,serif;font-size:1.08rem;margin:0;text-align:center;">TypeScript</p>
+          </div>
+        </div>
+      </div>
+      <div class="project-btn-row">
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 1.5rem; margin: 2.2rem 0 0.5rem 0;">
+          <a href="https://augie.app" target="_blank" style="width:100%;display:flex;justify-content:center;text-decoration:none;">
+            <button class="themed-btn">View Site</button>
+          </a>
+          <a href="index.html" style="width:100%;display:flex;justify-content:center;text-decoration:none;">
+            <button class="themed-btn">Home</button>
+          </a>
+        </div>
+      </div>
+    </div>
+    <script>
+    let augieCurrentSlide = 0;
+    let augieImages, augieContainer;
+    document.addEventListener('DOMContentLoaded', function() {
+      augieImages = document.querySelectorAll('.project-carousel-image');
+      augieContainer = document.getElementById('augieCarouselImages');
+      updateAugieCarousel();
+      document.getElementById('augiePrevBtn').addEventListener('click', function() { augieChangeSlide(-1); });
+      document.getElementById('augieNextBtn').addEventListener('click', function() { augieChangeSlide(1); });
+    });
+    function augieChangeSlide(direction) {
+      if (!augieImages || !augieContainer) {
+        augieImages = document.querySelectorAll('.project-carousel-image');
+        augieContainer = document.getElementById('augieCarouselImages');
+        if (!augieImages.length || !augieContainer) return;
+      }
+      augieCurrentSlide += direction;
+      if (augieCurrentSlide >= augieImages.length) augieCurrentSlide = 0;
+      if (augieCurrentSlide < 0) augieCurrentSlide = augieImages.length - 1;
+      updateAugieCarousel();
+    }
+    function updateAugieCarousel() {
+      augieImages.forEach((img, idx) => {
+        if(idx === augieCurrentSlide) {
+          img.classList.add('active');
+        } else {
+          img.classList.remove('active');
+        }
+      });
+    }
+    </script>
+    </body>
+</html>
