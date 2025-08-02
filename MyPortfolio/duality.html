@@ -12,6 +12,65 @@
         <link rel="stylesheet" href="mystyle.css">
         <title>Duality</title>
         <style>
+        @media (max-width: 600px) {
+            .main-project-container {
+                padding: 1.2rem 0.3rem 1.2rem 0.3rem;
+                margin: 1.2rem auto 1.2rem auto;
+                border-radius: 10px;
+            }
+            .project-title {
+                font-size: 2.1rem;
+                margin-bottom: 0.4rem;
+            }
+            .project-summary {
+                font-size: 0.98rem;
+                margin-bottom: 1rem;
+            }
+            .project-carousel {
+                max-width: 100vw;
+                height: 220px;
+                border-radius: 10px;
+                margin: 1.2rem auto 1rem auto;
+            }
+            .project-carousel-image {
+                height: 220px;
+                border-radius: 10px;
+            }
+            .project-carousel-controls span {
+                font-size: 1.3rem !important;
+            }
+            .project-section-title {
+                font-size: 1rem;
+                margin-bottom: 0.4rem;
+                margin-top: 0.7rem;
+            }
+            .project-section-text {
+                font-size: 0.88rem;
+                margin-bottom: 0.7rem;
+            }
+            .project-languages-container {
+                grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+                gap: 1.2rem 1.2rem;
+                max-width: 98vw;
+                padding: 1.2rem 0.3rem 0.7rem 0.3rem;
+                border-radius: 10px;
+            }
+            .skill img {
+                width: 38px !important;
+                height: 38px !important;
+                margin-bottom: 0.4rem !important;
+            }
+            .skill p {
+                font-size: 0.88rem !important;
+            }
+            .project-btn-row {
+                margin-top: 1.2rem !important;
+            }
+            .themed-btn {
+                font-size: 0.98rem;
+                padding: 0.7rem 1.2rem;
+            }
+        }
         .themed-btn {
             background: #101c10;
             color: #39ff14;
@@ -178,6 +237,14 @@
         }
         .project-languages-container {
             font-size: 0.98rem;
+            background-image: none !important;
+        }
+        .project-languages-container::before,
+        .project-languages-container::after,
+        .skill::before,
+        .skill::after {
+            display: none !important;
+            content: none !important;
         }
         </style>
 
@@ -216,8 +283,7 @@
             <p style="color:#39ff14;font-family:'JetBrains Mono','Share Tech Mono','Silkscreen',monospace,serif;font-size:1.08rem;margin:0;text-align:center;">PHP</p>
           </div>
           <div class="skill" style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;">
-            <img src="/assets/mysql.png" alt="MySQL" style="width:72px;height:72px;object-fit:contain;margin-bottom:0.7rem;filter:drop-shadow(0 0 8px #39ff14);display:block;margin-left:auto;margin-right:auto;">
-            <img src="/assets/mysql.png" alt="MySQL" style="width:90px;height:90px;object-fit:contain;margin-bottom:0.7rem;filter:drop-shadow(0 0 12px #39ff14);display:block;margin-left:auto;margin-right:auto;">
+            <img src="/assets/mysql.png" alt="MySQL" style="width:90px;height:90px;object-fit:contain;margin-bottom:0.7rem;filter:drop-shadow(0 0 24px #39ff14), drop-shadow(0 0 32px #00ff88), drop-shadow(0 0 18px #39ff14);display:block;margin-left:auto;margin-right:auto;">
             <p style="color:#39ff14;font-family:'JetBrains Mono','Share Tech Mono','Silkscreen',monospace,serif;font-size:1.08rem;margin:0;text-align:center;">MySQL</p>
           </div>
         </div>
@@ -231,11 +297,20 @@
             <button class="themed-btn">Home</button>
           </a>
         </div>
+        <!-- Project navigation arrows -->
+        <div id="project-nav-arrows" style="display:flex;justify-content:center;align-items:center;gap:2.5rem;margin:2.5rem 0 0.5rem 0;">
+          <button id="projectLeftArrow" aria-label="Previous Project" style="background:none;border:none;cursor:pointer;font-size:2.5rem;color:#39ff14;filter:drop-shadow(0 0 8px #39ff14);transition:color 0.18s,transform 0.18s;">
+            &#8592;
+          </button>
+          <span style="font-family:'Silkscreen',monospace,serif;font-size:1.2rem;color:#39ff14;">Project 2 / 4</span>
+          <button id="projectRightArrow" aria-label="Next Project" style="background:none;border:none;cursor:pointer;font-size:2.5rem;color:#39ff14;filter:drop-shadow(0 0 8px #39ff14);transition:color 0.18s,transform 0.18s;">
+            &#8594;
+          </button>
+        </div>
       </div>
     </div>
     <script>
       // Only declare these variables once at the top
-      // Declare variables only once at the top
       let dualityCurrentSlide = 0;
       let dualityImages, dualityContainer;
       document.addEventListener('DOMContentLoaded', function() {
@@ -244,6 +319,33 @@
         updateDualityCarousel();
         document.getElementById('dualityPrevBtn').addEventListener('click', function() { dualityChangeSlide(-1); });
         document.getElementById('dualityNextBtn').addEventListener('click', function() { dualityChangeSlide(1); });
+
+        // Remove duplicate MySQL images in Languages Used section
+        const langContainer = document.querySelector('.project-languages-container');
+        if (langContainer) {
+          const mysqlImgs = langContainer.querySelectorAll('img[alt="MySQL"]');
+          if (mysqlImgs.length > 1) {
+            for (let i = 1; i < mysqlImgs.length; i++) {
+              mysqlImgs[i].parentElement.remove();
+            }
+          }
+        }
+        // Project navigation logic
+        const projectPages = [
+          'augie.html',
+          'duality.html',
+          'honewdewIsland.html',
+          'trialGenie.html'
+        ];
+        const currentIndex = 1; // duality.html is index 2 (0-based)
+        document.getElementById('projectLeftArrow').addEventListener('click', function() {
+          let prevIdx = (currentIndex - 1 + projectPages.length) % projectPages.length;
+          window.location.href = projectPages[prevIdx];
+        });
+        document.getElementById('projectRightArrow').addEventListener('click', function() {
+          let nextIdx = (currentIndex + 1) % projectPages.length;
+          window.location.href = projectPages[nextIdx];
+        });
       });
       function dualityChangeSlide(direction) {
         if (!dualityImages || !dualityContainer) {

@@ -34,6 +34,65 @@
                 </a>
             </div>
             <style>
+        @media (max-width: 600px) {
+            .main-project-container, .about-container {
+                padding: 1.2rem 0.3rem 1.2rem 0.3rem;
+                margin: 1.2rem auto 1.2rem auto;
+                border-radius: 10px;
+            }
+            .project-title, .about-title {
+                font-size: 2.1rem;
+                margin-bottom: 0.4rem;
+            }
+            .project-summary, .about-summary {
+                font-size: 0.98rem;
+                margin-bottom: 1rem;
+            }
+            .project-carousel {
+                max-width: 100vw;
+                height: 220px;
+                border-radius: 10px;
+                margin: 1.2rem auto 1rem auto;
+            }
+            .project-carousel-image {
+                height: 220px;
+                border-radius: 10px;
+            }
+            .project-carousel-controls span {
+                font-size: 1.3rem !important;
+            }
+            .project-section-title, .about-section-title {
+                font-size: 1rem;
+                margin-bottom: 0.4rem;
+                margin-top: 0.7rem;
+            }
+            .project-section-text, .about-section-text {
+                font-size: 0.88rem;
+                margin-bottom: 0.7rem;
+            }
+            .project-languages-container, .about-skills-container {
+                grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+                gap: 1.2rem 1.2rem;
+                max-width: 98vw;
+                padding: 1.2rem 0.3rem 0.7rem 0.3rem;
+                border-radius: 10px;
+            }
+            .skill img, .about-skill img {
+                width: 38px !important;
+                height: 38px !important;
+                margin-bottom: 0.4rem !important;
+            }
+            .skill p, .about-skill p {
+                font-size: 0.88rem !important;
+            }
+            .project-btn-row, .about-btn-row {
+                margin-top: 1.2rem !important;
+            }
+            .themed-btn {
+                font-size: 0.98rem;
+                padding: 0.7rem 1.2rem;
+            }
+        }
                 #projectMenu {
                     position: fixed;
                     top: 0;
@@ -199,10 +258,10 @@
                 <button id="closeMenu">&times;</button>
                 <h1 style="color:#39ff14;font-family:'JetBrains Mono','Share Tech Mono','Silkscreen',monospace,serif;font-size:2.2rem;text-align:center;padding:2.5rem 1.5rem 0.5rem 1.5rem;line-height:1.25;max-width:900px;margin:0 auto;">My Projects</h1>
                 <ol id="projectList" style="list-style:decimal inside;padding:0;margin:0;max-width:600px;width:100%;">
-                    <li class="project-list-item"><a href="augie.html" class="project-link" target="_blank">Augie</a></li>
-                    <li class="project-list-item"><a href="duality.html" class="project-link" target="_blank">Duality</a></li>
-                    <li class="project-list-item"><a href="honewdewIsland.html" class="project-link" target="_blank">Honeydew Island</a></li>
-                    <li class="project-list-item"><a href="trialgenie.html" class="project-link" target="_blank">TrialGenie</a></li>
+                    <li class="project-list-item"><a href="augie.html" class="project-link">Augie</a></li>
+                    <li class="project-list-item"><a href="duality.html" class="project-link">Duality</a></li>
+                    <li class="project-list-item"><a href="honewdewIsland.html" class="project-link">Honeydew Island</a></li>
+                    <li class="project-list-item"><a href="trialGenie.html" class="project-link">TrialGenie</a></li>
                 </ol>
             </div>
         
